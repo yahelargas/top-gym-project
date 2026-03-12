@@ -22,7 +22,7 @@ const CONTACTS = [
   {
     icon: "📍", iconClass: "map",
     text: "מתחם מסחרי שריגים לי-און",
-    href: "https://maps.google.com",
+    href: "https://www.google.com/maps/search/%D7%9E%D7%AA%D7%97%D7%9D+%D7%9E%D7%A1%D7%97%D7%A8%D7%99+%D7%A9%D7%A8%D7%99%D7%92%D7%99%D7%9D+%D7%9C%D7%99%D7%90%D7%95%D7%9F%E2%80%AD/@31.6761642,34.9379307,17z?entry=ttu&g_ep=EgoyMDI2MDMwOS4wIKXMDSoASAFQAw%3D%3D",
     isLink: false,
   },
   {
@@ -33,8 +33,8 @@ const CONTACTS = [
   },
   {
     icon: <InstagramIcon />, iconClass: "instagram",
-    text: "@topgymis",
-    href: "https://www.instagram.com/topgymis",
+    text: "@top_gym_is",
+    href: "https://www.instagram.com/top_gym_is",
     isLink: true,
   },
   {
