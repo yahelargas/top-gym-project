@@ -1,0 +1,51 @@
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hours-row:last-child {
+  border-bottom: none;
+}
+
+.hours-row__day {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.hours-row__day--today {
+  color: var(--color-green);
+}
+
+.hours-row__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-green);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.hours-row__times {
+  text-align: left;
+}
+
+.hours-row__time {
+  font-size: 13px;
+  color: #5a6070;
+  line-height: 1.8;
+}
+
+.hours-row__closed {
+  color: var(--color-red);
+  font-weight: 600;
+  font-size: 14px;
+}

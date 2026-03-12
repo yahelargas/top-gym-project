@@ -1,0 +1,75 @@
+.gauge-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.gauge-canvas {
+  width: 100%;
+  max-width: 360px;
+  height: 220px;
+  display: block;
+}
+
+.gauge-count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  justify-content: center;
+}
+
+.gauge-count__number {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.gauge-count__label {
+  font-size: 16px;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* Status badge */
+.status-badge {
+  padding: 8px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.status-badge--free   { background: var(--color-green-bg);  color: var(--color-green);  }
+.status-badge--medium { background: var(--color-orange-bg); color: var(--color-orange); }
+.status-badge--busy   { background: var(--color-red-bg);    color: var(--color-red);    }
+
+/* Refresh button */
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-family: var(--font);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border-md);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.refresh-btn:hover {
+  background: #f5f6fa;
+}
+
+.refresh-btn__icon {
+  font-size: 15px;
+  display: inline-block;
+}
+
+.refresh-btn__icon--spinning {
+  animation: spin 0.5s linear;
+}

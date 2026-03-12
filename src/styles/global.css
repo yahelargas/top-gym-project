@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg:        #eef0f5;
+  --color-card:      #ffffff;
+  --color-text:      #1a1f2e;
+  --color-muted:     #8a90a0;
+  --color-border:    #f2f3f7;
+  --color-border-md: #eaecf2;
+
+  --color-green:     #27ae60;
+  --color-green-bg:  #e8f7ee;
+  --color-orange:    #e67e22;
+  --color-orange-bg: #fff4e0;
+  --color-red:       #e74c3c;
+  --color-red-bg:    #fde8e8;
+  --color-blue:      #2196f3;
+
+  --radius-card: 20px;
+  --radius-pill: 50px;
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+
+  --font: 'Heebo', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--color-bg);
+  min-height: 100vh;
+  direction: rtl;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
