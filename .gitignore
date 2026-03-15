@@ -25,6 +25,9 @@ backend/coverage.xml
 
 top-gym/node_modules/
 
+node_modules/
+.env
+
 
 # --- Node / Expo (mobile) ---
 mobile/node_modules/
@@ -48,3 +51,6 @@ mobile/ios/
 # --- Cursor / local tooling ---
 .cursor/
 
+node_modules/
+.env
+/node_modules/
