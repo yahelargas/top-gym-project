@@ -8,11 +8,84 @@ import { MAX_PEOPLE, DEMO_COUNT } from "../../utils/config";
 import "../Gauge/Gauge.css";
 import "./OccupancyCard.css";
 
+// ------- Gym schedule helpers -------
+// Each entry: { days: [0-6 Sun=0], ranges: [[openH, openM, closeH, closeM], ...] }
+// null ranges = closed all day
+const SCHEDULE = [
+  { days: [0, 1, 2, 3, 4], ranges: [[6, 30, 12, 0], [14, 30, 21, 30]] }, // Sun–Thu
+  { days: [5],              ranges: [[6, 30, 14, 0]] },                   // Fri
+  { days: [6],              ranges: null },                                // Sat
+];
+
+const DAY_NAMES_HE = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+
+function toMinutes(h, m) { return h * 60 + m; }
+
+function getGymStatus(now = new Date()) {
+  const day = now.getDay(); // 0=Sun
+  const cur = toMinutes(now.getHours(), now.getMinutes());
+
+  const todayRule = SCHEDULE.find(r => r.days.includes(day));
+
+  // Check if open right now
+  if (todayRule?.ranges) {
+    for (const [oh, om, ch, cm] of todayRule.ranges) {
+      if (cur >= toMinutes(oh, om) && cur < toMinutes(ch, cm)) {
+        return { isOpen: true };
+      }
+    }
+  }
+
+  // Find next opening — search up to 7 days ahead
+  for (let d = 0; d < 7; d++) {
+    const checkDay = (day + d) % 7;
+    const rule = SCHEDULE.find(r => r.days.includes(checkDay));
+    if (!rule?.ranges) continue;
+
+    for (const [oh, om] of rule.ranges) {
+      const openMin = toMinutes(oh, om);
+      // If same day, must be in the future
+      if (d === 0 && openMin <= cur) continue;
+      const timeStr = `${String(oh).padStart(2, "0")}:${String(om).padStart(2, "0")}`;
+      const dayLabel = d === 0 ? "היום" : d === 1 ? "מחר" : `ביום ${DAY_NAMES_HE[checkDay]}`;
+      return { isOpen: false, nextOpen: `יפתח ${dayLabel} ב-${timeStr}` };
+    }
+  }
+
+  return { isOpen: false, nextOpen: "שעות הפתיחה אינן ידועות" };
+}
+
+// ------- Closed screen -------
+function ClosedScreen({ nextOpen }) {
+  return (
+    <div className="closed-screen">
+      <div className="closed-screen__lock">🔒</div>
+      <p className="closed-screen__title">חדר הכושר סגור כרגע</p>
+      <p className="closed-screen__next">{nextOpen}</p>
+    </div>
+  );
+}
+
+// ------- Loading bar -------
+function LoadingBar() {
+  return (
+    <div className="loading-bar-wrap">
+      <div className="loading-bar-track">
+        <div className="loading-bar-fill" />
+      </div>
+      <p className="loading-bar__label">טוען נתונים…</p>
+    </div>
+  );
+}
+
+// ------- Main card -------
 export default function OccupancyCard() {
   const [count,       setCount]       = useState(DEMO_COUNT);
   const [lastUpdated, setLastUpdated] = useState(new Date());
   const [spinning,    setSpinning]    = useState(false);
+  const [loading,     setLoading]     = useState(true);
   const [timeLabel,   setTimeLabel]   = useState(timeAgo(new Date()));
+  const [gymStatus,   setGymStatus]   = useState(getGymStatus());
 
   const display = useAnimatedCount(count);
   const status  = getStatus(display);
@@ -22,7 +95,15 @@ export default function OccupancyCard() {
     const c = await fetchCount();
     setCount(c);
     setLastUpdated(new Date());
+    setLoading(false);
     setTimeout(() => setSpinning(false), 500);
+  }, []);
+
+  // Re-check gym open/closed every minute
+  useEffect(() => {
+    setGymStatus(getGymStatus());
+    const t = setInterval(() => setGymStatus(getGymStatus()), 60000);
+    return () => clearInterval(t);
   }, []);
 
   // Fetch on mount + auto-refresh every 60s
@@ -39,6 +120,25 @@ export default function OccupancyCard() {
     return () => clearInterval(t);
   }, [lastUpdated]);
 
+  // --- Closed state ---
+  if (!gymStatus.isOpen) {
+    return (
+      <Card>
+        <ClosedScreen nextOpen={gymStatus.nextOpen} />
+      </Card>
+    );
+  }
+
+  // --- Loading state ---
+  if (loading) {
+    return (
+      <Card>
+        <LoadingBar />
+      </Card>
+    );
+  }
+
+  // --- Normal state ---
   return (
     <Card>
       <div className="occupancy-card">

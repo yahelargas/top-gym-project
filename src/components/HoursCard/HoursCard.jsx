@@ -12,6 +12,10 @@ export default function HoursCard() {
     <Card title="שעות פתיחה">
       {HOURS.map((row, i) => (
         <div key={i} className="hours-row">
+          <div className={`hours-row__day${row.isToday ? " hours-row__day--today" : ""}`}>
+            {row.isToday && <span className="hours-row__dot" />}
+            {row.day}
+          </div>
           <div className="hours-row__times">
             {row.times
               ? row.times.map((t, j) => (
@@ -19,10 +23,6 @@ export default function HoursCard() {
                 ))
               : <span className="hours-row__closed">סגור</span>
             }
-          </div>
-          <div className={`hours-row__day${row.isToday ? " hours-row__day--today" : ""}`}>
-            {row.isToday && <span className="hours-row__dot" />}
-            {row.day}
           </div>
         </div>
       ))}
