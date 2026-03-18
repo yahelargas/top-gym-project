@@ -26,7 +26,7 @@ export default function Gauge({ value, max }) {
     ctx.beginPath();
     ctx.arc(cx, cy, r, Math.PI, 0, false);
     ctx.strokeStyle = grad;
-    ctx.lineWidth   = 18;
+    ctx.lineWidth   = 24;
     ctx.lineCap     = "round";
     ctx.stroke();
 
@@ -45,7 +45,7 @@ export default function Gauge({ value, max }) {
     ctx.moveTo(cx, cy);
     ctx.lineTo(nx, ny);
     ctx.strokeStyle = "#1a1f2e";
-    ctx.lineWidth   = 10;
+    ctx.lineWidth   = 8;
     ctx.lineCap     = "round";
     ctx.stroke();
     ctx.restore();
