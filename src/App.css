@@ -16,11 +16,11 @@
   padding: 4px 0 6px;
 }
 
-.app__title {
-  font-size: 28px;
-  font-weight: 900;
-  color: var(--color-text);
-  letter-spacing: -0.5px;
+.app__logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 4px;
 }
 
 .app__subtitle {

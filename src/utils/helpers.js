@@ -5,8 +5,10 @@ export function getStatus(count) {
 }
 
 export function timeAgo(date) {
-  const diff = Math.floor((Date.now() - date) / 60000);
-  if (diff < 1)   return "עודכן כרגע";
-  if (diff === 1) return "עודכן לפני דקה";
-  return `עודכן לפני ${diff} דקות`;
+  const diffSec = Math.floor((Date.now() - date) / 1000);
+  if (diffSec < 5)   return "עודכן כרגע";
+  if (diffSec < 60)  return `עודכן לפני ${diffSec} שניות`;
+  const diffMin = Math.floor(diffSec / 60);
+  if (diffMin === 1) return "עודכן לפני דקה";
+  return `עודכן לפני ${diffMin} דקות`;
 }
