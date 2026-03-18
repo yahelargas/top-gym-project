@@ -11,7 +11,6 @@ export default function App() {
       <div className="app__page">
         <header className="app__header">
           <img src={logo} alt="Top Gym" className="app__logo" />
-          <p className="app__subtitle">עומס נוכחי בחדר הכושר</p>
         </header>
 
         <OccupancyCard />
