@@ -2,13 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: 12px 10px;
   gap: 12px;
-  border-bottom: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin: 2px 0;
 }
 
-.hours-row:last-child {
-  border-bottom: none;
+.hours-row--today {
+  background: #f4f5f8;
 }
 
 .hours-row__day {
@@ -17,7 +18,7 @@
   color: var(--color-text);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   white-space: nowrap;
 }
 
@@ -41,11 +42,12 @@
 .hours-row__time {
   font-size: 13px;
   color: #5a6070;
-  line-height: 1.8;
+  line-height: 1.9;
+  font-variant-numeric: tabular-nums;
 }
 
 .hours-row__closed {
   color: var(--color-red);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
 }

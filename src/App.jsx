@@ -3,7 +3,7 @@ import "./App.css";
 import OccupancyCard from "./components/OccupancyCard/OccupancyCard";
 import HoursCard     from "./components/HoursCard/HoursCard";
 import ContactCard   from "./components/ContactCard/ContactCard";
-import logo          from "./assets/logo-white.jpeg";
+import logo          from "./assets/rona-test.png";
 
 export default function App() {
   return (
