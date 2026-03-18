@@ -33,8 +33,8 @@ export default function Gauge({ value, max }) {
     // Needle
     const ratio = Math.min(value / max, 1);
     const angle = Math.PI + ratio * Math.PI;
-    const nx = cx + Math.cos(angle) * r * 0.82;
-    const ny = cy + Math.sin(angle) * r * 0.82;
+    const nx = cx + Math.cos(angle) * r * 0.8;
+    const ny = cy + Math.sin(angle) * r * 0.8;
 
     ctx.save();
     ctx.shadowColor   = "rgba(0,0,0,0.18)";
@@ -45,14 +45,14 @@ export default function Gauge({ value, max }) {
     ctx.moveTo(cx, cy);
     ctx.lineTo(nx, ny);
     ctx.strokeStyle = "#1a1f2e";
-    ctx.lineWidth   = 4;
+    ctx.lineWidth   = 10;
     ctx.lineCap     = "round";
     ctx.stroke();
     ctx.restore();
 
     // Pivot circle
     ctx.beginPath();
-    ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 12, 0, Math.PI * 2);
     ctx.fillStyle   = "#fff";
     ctx.fill();
     ctx.strokeStyle = "#1a1f2e";
