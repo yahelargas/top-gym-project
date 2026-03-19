@@ -40,9 +40,15 @@ const CONTACTS = [
   {
     icon: "💬", iconClass: "whatsapp",
     text: "קבוצת WhatsApp",
-    href: "https://wa.me/9720504446548",
+    href: "https://chat.whatsapp.com/LiJEfESEAE44v424poOPXg?mode=hqctswi",
     isLink: true,
   },
+  {
+    icon: "💬", iconClass: "whatsapp",
+    text: "לשאלות נוספות",
+    href: "https://wa.me/9720504446548",
+    isLink: true,
+  }
 ];
 
 export default function ContactCard() {
