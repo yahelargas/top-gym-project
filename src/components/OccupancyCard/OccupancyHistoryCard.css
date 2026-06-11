@@ -1,0 +1,210 @@
+.occupancy-history {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Day Selector */
+.day-selector {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  background: var(--color-border);
+  padding: 4px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.day-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-muted);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.day-tab:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.day-tab--active {
+  color: var(--color-text);
+  background: var(--color-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Loading State */
+.history-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.history-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-border-md);
+  border-top-color: var(--color-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Chart Container */
+.chart-container {
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* Legend / Info badge */
+.mock-badge {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  font-size: 11px;
+  color: var(--color-muted);
+  background: var(--color-border);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* SVG Styling */
+.grid-line {
+  stroke: var(--color-border);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.grid-label-y {
+  fill: var(--color-muted);
+  font-size: 10px;
+  font-family: var(--font);
+  font-weight: 500;
+  text-anchor: end;
+}
+
+.grid-label-x {
+  fill: var(--color-muted);
+  font-size: 9px;
+  font-family: var(--font);
+  font-weight: 500;
+  text-anchor: middle;
+}
+
+/* Current Time Indicator */
+.current-time-line {
+  stroke: var(--color-red);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 2;
+}
+
+.current-time-text {
+  fill: var(--color-red);
+  font-size: 9px;
+  font-family: var(--font);
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* Hover line & dot */
+.hover-line {
+  stroke: var(--color-border-md);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.hover-dot {
+  fill: var(--color-card);
+  stroke: var(--color-blue);
+  stroke-width: 3;
+  filter: drop-shadow(0 2px 4px rgba(33, 150, 243, 0.4));
+}
+
+/* Tooltip Overlay */
+.chart-tooltip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: rgba(26, 31, 46, 0.95);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  font-family: var(--font);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  z-index: 10;
+  min-width: 80px;
+  transition: left 0.1s ease-out, top 0.1s ease-out;
+}
+
+.chart-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 4px 0;
+  border-style: solid;
+  border-color: rgba(26, 31, 46, 0.95) transparent;
+  display: block;
+  width: 0;
+}
+
+.tooltip-hour {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.tooltip-count {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.tooltip-unit {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+/* Closed hours note */
+.closed-hours-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-muted);
+  background: var(--color-border);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 500;
+  margin-top: 4px;
+}

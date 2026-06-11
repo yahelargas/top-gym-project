@@ -20,7 +20,29 @@ export async function fetchCount() {
     return 0;
   }
 }
-  
+
+export async function fetchOccupancyHistory() {
+  try {
+    const threeWeeksAgo = new Date();
+    threeWeeksAgo.setDate(threeWeeksAgo.getDate() - 21);
+
+    const { data, error } = await supabase
+      .from('occupancy_history')
+      .select('created_at, occupancy_count')
+      .gte('created_at', threeWeeksAgo.toISOString())
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.warn("[TopGym] Supabase history fetch error:", error.message);
+      return [];
+    }
+
+    return data || [];
+  } catch (err) {
+    console.error("[TopGym] Unexpected history fetch error:", err);
+    return [];
+  }
+}
 
 //     console.log("[TopGym] Fetching from:", API_URL);
 //     const res = await fetch(API_URL);
